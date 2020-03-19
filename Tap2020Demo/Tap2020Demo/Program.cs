@@ -9,14 +9,19 @@ namespace Tap2020Demo
             var debitCalculator = new DebitAccountWithdrawalFeeCalculator();
             Account debitAccount = new DebitAccount();
             debitAccount.Deposit(100);
-            debitAccount.Withdraw(debitCalculator.CalculateAmountToWithdraw(debitAccount, 50));
-            Console.WriteLine("Debit account: {0}.", debitAccount.Amount);
+            WithdrawMoneyFrom(debitAccount, 50, debitCalculator);
 
             var creditCalculator = new CreditAccountWithdrawalFeeCalculator();
             Account creditAccount = new CreditAccount();
             creditAccount.Deposit(100);
-            creditAccount.Withdraw(creditCalculator.CalculateAmountToWithdraw(creditAccount, 50));
-            Console.WriteLine("Credit account: {0}.", creditAccount.Amount);
+            WithdrawMoneyFrom(creditAccount, 50, creditCalculator);
+        }
+
+        static void WithdrawMoneyFrom(Account account, decimal amount, WithdrawalFeeCalculator withdrawalFeeCalculator)
+        {
+            var totalAmount = withdrawalFeeCalculator.CalculateAmountToWithdraw(account, amount);
+            account.Withdraw(totalAmount);
+            Console.WriteLine("{0}: {1}", account.GetType().Name, account.Amount);
         }
     }
 }
