@@ -22,7 +22,7 @@ namespace Tap2020Demo
                 return 0m;
             }
 
-            if (account is Savings)
+            if (account is SavingsAccount)
             {
                 return .12m;
             }
