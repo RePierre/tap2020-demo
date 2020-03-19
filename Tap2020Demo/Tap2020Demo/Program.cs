@@ -19,7 +19,7 @@ namespace Tap2020Demo
 
         static void WithdrawMoneyFrom(Account account, decimal amount, WithdrawalFeeCalculator withdrawalFeeCalculator)
         {
-            var totalAmount = withdrawalFeeCalculator.CalculateAmountToWithdraw(account, amount);
+            var totalAmount = withdrawalFeeCalculator.CalculateAmountToWithdraw(amount);
             if (totalAmount > account.Amount)
             {
                 Console.WriteLine("Insufficient funds.");

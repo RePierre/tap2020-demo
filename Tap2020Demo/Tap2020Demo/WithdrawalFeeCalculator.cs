@@ -4,7 +4,7 @@ namespace Tap2020Demo
 {
     abstract class WithdrawalFeeCalculator
     {
-        public decimal CalculateAmountToWithdraw(Account account, decimal amount)
+        public decimal CalculateAmountToWithdraw(decimal amount)
         {
             var comission = CalculateComission(amount);
             return amount + comission;
