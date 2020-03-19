@@ -1,6 +1,6 @@
 ﻿namespace Tap2020Demo
 {
-    abstract class AccountBase
+    abstract class DepositAccountBase
     {
         public string Ibnan { get; set; }
 

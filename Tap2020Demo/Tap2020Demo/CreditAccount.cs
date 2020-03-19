@@ -1,6 +1,6 @@
 ﻿namespace Tap2020Demo
 {
-    class CreditAccount : Account
+    class CreditAccount : WithdrawalAndDepositAccount
     {
 
     }

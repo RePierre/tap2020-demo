@@ -2,7 +2,7 @@
 
 namespace Tap2020Demo
 {
-    class DepositAccount : AccountBase
+    class DepositAccount : DepositAccountBase
     {
 
     }

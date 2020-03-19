@@ -2,7 +2,7 @@
 
 namespace Tap2020Demo
 {
-    abstract class Account : AccountBase
+    abstract class WithdrawalAndDepositAccount : DepositAccountBase
     {
         public decimal Withdraw(decimal amount)
         {
