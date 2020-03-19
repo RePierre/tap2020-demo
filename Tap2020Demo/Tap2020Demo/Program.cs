@@ -15,10 +15,6 @@ namespace Tap2020Demo
             Account creditAccount = new CreditAccount();
             creditAccount.Deposit(100);
             WithdrawMoneyFrom(creditAccount, 150, creditCalculator);
-
-            var depositAccount = new DepositAccount();
-            depositAccount.Deposit(100);
-            WithdrawMoneyFrom(depositAccount, 50, debitCalculator);
         }
 
         static void WithdrawMoneyFrom(Account account, decimal amount, WithdrawalFeeCalculator withdrawalFeeCalculator)
