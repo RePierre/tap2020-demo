@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Tap2020Demo
+﻿namespace Tap2020Demo
 {
     class Program
     {
@@ -8,30 +6,35 @@ namespace Tap2020Demo
         {
             var debitCalculator = new DebitAccountWithdrawalFeeCalculator();
             WithdrawalAndDepositAccount debitAccount = new DebitAccount();
-            DepositMoneyTo(debitAccount, 100);
-            WithdrawMoneyFrom(debitAccount, 50, debitCalculator);
+            Atm.DepositMoneyTo(debitAccount, 100);
+            Atm.WithdrawMoneyFrom(debitAccount, 50, debitCalculator);
 
             var creditCalculator = new CreditAccountWithdrawalFeeCalculator();
             WithdrawalAndDepositAccount creditAccount = new CreditAccount();
-            DepositMoneyTo(creditAccount, 100);
-            WithdrawMoneyFrom(creditAccount, 150, creditCalculator);
+            Atm.DepositMoneyTo(creditAccount, 100);
+            Atm.WithdrawMoneyFrom(creditAccount, 150, new DummyCalculator());
+
+            TestWithdrawal(new DebitAccount());
         }
 
-        static void DepositMoneyTo(DepositAccountBase depositAccount, decimal amount)
+        static void TestWithdrawal(WithdrawalAndDepositAccount account)
         {
-            depositAccount.Deposit(amount);
-        }
-
-        static void WithdrawMoneyFrom(WithdrawalAndDepositAccount account, decimal amount, WithdrawalFeeCalculator withdrawalFeeCalculator)
-        {
-            var totalAmount = withdrawalFeeCalculator.CalculateAmountToWithdraw(amount);
-            if (totalAmount > account.Amount)
+            var prevAmount = account.Amount;
+            Atm.DepositMoneyTo(account, 50);
+            Atm.WithdrawMoneyFrom(account, 50, new DummyCalculator());
+            if (account.Amount == prevAmount)
             {
-                Console.WriteLine("Insufficient funds.");
-                return;
+                System.Console.WriteLine("Test passed.");
             }
-            account.Withdraw(totalAmount);
-            Console.WriteLine("{0}: {1}", account.GetType().Name, account.Amount);
         }
+
+        class DummyCalculator : IWithdrawalFeeCalculator
+        {
+            public decimal CalculateAmountToWithdraw(decimal amount)
+            {
+                return 50m;
+            }
+        }
+
     }
 }
