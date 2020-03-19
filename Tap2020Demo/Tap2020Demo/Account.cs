@@ -2,14 +2,14 @@
 
 namespace Tap2020Demo
 {
-
-    abstract class Account
+    abstract class Account : AccountBase
     {
-        public string Ibnan { get; set; }
-
-        public decimal Amount { get; private set; }
-
         public decimal Withdraw(decimal amount)
+        {
+            return WithdrawInternal(amount);
+        }
+
+        protected virtual decimal WithdrawInternal(decimal amount)
         {
             if (Amount < amount)
             {
@@ -18,11 +18,6 @@ namespace Tap2020Demo
 
             Amount -= amount;
             return amount;
-        }
-
-        public void Deposit(decimal amount)
-        {
-            Amount += amount;
         }
     }
 }
