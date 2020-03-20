@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace Tap2020Demo
+namespace Uaic.Tap2020Demo.WithdrawalFeeCalculators
 {
-    abstract class WithdrawalFeeCalculator : IWithdrawalFeeCalculator
+    public abstract class WithdrawalFeeCalculator : IWithdrawalFeeCalculator
     {
         public decimal CalculateAmountToWithdraw(decimal amount)
         {
-            // Call database
             var comission = CalculateComission(amount);
             return amount + comission;
         }

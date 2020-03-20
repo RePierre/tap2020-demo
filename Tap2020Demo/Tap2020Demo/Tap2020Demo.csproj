@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tap2020Demo.Core\Tap2020Demo.Core.csproj" />
+  </ItemGroup>
+
 </Project>

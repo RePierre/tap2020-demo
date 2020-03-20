@@ -1,15 +1,18 @@
 ﻿using System;
+using Uaic.Tap2020Demo.Core.Accounts.Base;
+using Uaic.Tap2020Demo.WithdrawalFeeCalculators;
 
-namespace Tap2020Demo
+namespace Uaic.Tap2020Demo.Core
 {
-    class Atm
+
+    public class AutomaticTellerMachine : IAutomaticTellerMachine
     {
-        public static void DepositMoneyTo(DepositAccountBase depositAccount, decimal amount)
+        public void DepositMoneyTo(IDepositAccount depositAccount, decimal amount)
         {
             depositAccount.Deposit(amount);
         }
 
-        public static void WithdrawMoneyFrom(WithdrawalAndDepositAccount account, decimal amount, IWithdrawalFeeCalculator withdrawalFeeCalculator)
+        public void WithdrawMoneyFrom(IWithdrawalAndDepositAccount account, decimal amount, IWithdrawalFeeCalculator withdrawalFeeCalculator)
         {
             var totalAmount = withdrawalFeeCalculator.CalculateAmountToWithdraw(amount);
             if (totalAmount > account.Amount)

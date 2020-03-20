@@ -1,8 +1,8 @@
-﻿namespace Tap2020Demo
+﻿namespace Uaic.Tap2020Demo.Core.Accounts.Base
 {
-    abstract class DepositAccountBase
+    public abstract class DepositAccountBase : IDepositAccount
     {
-        public string Ibnan { get; set; }
+        public string Iban { get; set; }
 
         public decimal Amount { get; protected set; }
 

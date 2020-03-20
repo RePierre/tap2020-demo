@@ -1,27 +1,42 @@
-﻿namespace Tap2020Demo
+﻿using Uaic.Tap2020Demo;
+using Uaic.Tap2020Demo.Core;
+using Uaic.Tap2020Demo.Core.Accounts;
+using Uaic.Tap2020Demo.Core.Accounts.Base;
+using Uaic.Tap2020Demo.WithdrawalFeeCalculators;
+
+namespace Tap2020Demo
 {
     class Program
     {
         static void Main(string[] args)
         {
+            IAutomaticTellerMachine atm = new AutomaticTellerMachine();
             var debitCalculator = new DebitAccountWithdrawalFeeCalculator();
-            WithdrawalAndDepositAccount debitAccount = new DebitAccount();
-            Atm.DepositMoneyTo(debitAccount, 100);
-            Atm.WithdrawMoneyFrom(debitAccount, 50, debitCalculator);
+            IWithdrawalAndDepositAccount debitAccount = new DebitAccount();
+
+            atm.DepositMoneyTo(debitAccount, 100);
+            atm.WithdrawMoneyFrom(debitAccount, 50, debitCalculator);
 
             var creditCalculator = new CreditAccountWithdrawalFeeCalculator();
             WithdrawalAndDepositAccount creditAccount = new CreditAccount();
-            Atm.DepositMoneyTo(creditAccount, 100);
-            Atm.WithdrawMoneyFrom(creditAccount, 150, new DummyCalculator());
+            atm.DepositMoneyTo(creditAccount, 100);
+            atm.WithdrawMoneyFrom(creditAccount, 150, new DummyCalculator());
 
-            TestWithdrawal(new DebitAccount());
+            TestWithdrawalFromDebitAccount();
         }
 
-        static void TestWithdrawal(WithdrawalAndDepositAccount account)
+        static void TestWithdrawalFromDebitAccount()
         {
+            // Arrange
+            var atm = new AutomaticTellerMachine();
+            var account = new DebitAccount();
             var prevAmount = account.Amount;
-            Atm.DepositMoneyTo(account, 50);
-            Atm.WithdrawMoneyFrom(account, 50, new DummyCalculator());
+
+            // Act
+            atm.DepositMoneyTo(account, 50);
+            atm.WithdrawMoneyFrom(account, 50, new DummyCalculator());
+
+            // Assert
             if (account.Amount == prevAmount)
             {
                 System.Console.WriteLine("Test passed.");

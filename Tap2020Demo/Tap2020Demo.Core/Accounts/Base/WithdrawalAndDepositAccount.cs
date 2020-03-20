@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Tap2020Demo
+namespace Uaic.Tap2020Demo.Core.Accounts.Base
 {
-    abstract class WithdrawalAndDepositAccount : DepositAccountBase
+    public abstract class WithdrawalAndDepositAccount : DepositAccountBase, IWithdrawalAndDepositAccount
     {
         public decimal Withdraw(decimal amount)
         {
