@@ -1,6 +1,6 @@
-﻿namespace Tap2020Demo
+﻿namespace Uaic.Tap2020Demo.WithdrawalFeeCalculators
 {
-    class CreditAccountWithdrawalFeeCalculator : WithdrawalFeeCalculator
+    public class CreditAccountWithdrawalFeeCalculator : WithdrawalFeeCalculator
     {
         protected override decimal CalculateComission(decimal amount)
         {
