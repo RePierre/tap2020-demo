@@ -27,24 +27,24 @@ namespace Uaic.Tap2020Demo.DataAccess.SqlServer.Repositories
             dataContext.SaveChanges();
         }
 
-        void IDataRepository.Delete<TEntity>(TEntity item)
+        void IDataRepository.Delete<TEntity>(TEntity entity)
         {
-            var entity = dataContext.Set<TEntity>()
-                .SingleOrDefault(e => e.Id == item.Id);
-            if (entity != null)
+            var dbEntity = dataContext.Set<TEntity>()
+                .SingleOrDefault(e => e.Id == entity.Id);
+            if (dbEntity != null)
             {
-                dataContext.Remove(entity);
+                dataContext.Remove(dbEntity);
             }
         }
 
-        void IDataRepository.Insert<TEntity>(TEntity debitAccount)
+        void IDataRepository.Insert<TEntity>(TEntity entity)
         {
-            dataContext.Add(debitAccount);
+            dataContext.Add(entity);
         }
 
-        void IDataRepository.Update<TEntity>(TEntity debitAccount)
+        void IDataRepository.Update<TEntity>(TEntity entity)
         {
-            dataContext.Update(debitAccount);
+            dataContext.Update(entity);
         }
     }
 }
