@@ -2,6 +2,7 @@
 using Uaic.Tap2020Demo.Core;
 using Uaic.Tap2020Demo.Core.Accounts;
 using Uaic.Tap2020Demo.Core.Accounts.Base;
+using Uaic.Tap2020Demo.Core.Services;
 using Uaic.Tap2020Demo.WithdrawalFeeCalculators;
 
 namespace Tap2020Demo
