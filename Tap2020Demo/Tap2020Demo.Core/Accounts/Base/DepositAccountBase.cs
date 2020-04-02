@@ -2,6 +2,8 @@
 {
     public abstract class DepositAccountBase : IDepositAccount
     {
+        public int Id { get; set; }
+
         public string Iban { get; set; }
 
         public decimal Amount { get; protected set; }

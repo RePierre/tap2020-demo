@@ -1,6 +1,6 @@
 ﻿namespace Uaic.Tap2020Demo.Core.Accounts.Base
 {
-    public interface IDepositAccount
+    public interface IDepositAccount : IEntityBase
     {
         decimal Amount { get; }
 
