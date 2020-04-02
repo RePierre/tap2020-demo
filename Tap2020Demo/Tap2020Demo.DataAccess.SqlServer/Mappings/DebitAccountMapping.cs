@@ -17,7 +17,7 @@ namespace Uaic.Tap2020Demo.DataAccess.SqlServer.Mappings
             builder.Property(_ => _.Id).UseIdentityColumn();
 
             builder.Property(_ => _.Amount).HasColumnName("Amount");
-            builder.Property(_ => _.Iban).HasColumnName("Iban");
+            builder.Property(_ => _.Iban).HasColumnName("Iban").HasMaxLength(34);
         }
     }
 }
