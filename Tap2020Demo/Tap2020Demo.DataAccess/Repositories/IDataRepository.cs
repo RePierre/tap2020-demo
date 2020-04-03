@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Uaic.Tap2020Demo.Core.Accounts;
-using Uaic.Tap2020Demo.Core.Accounts.Base;
+﻿using System.Linq;
+using Uaic.Tap2020Demo.Core;
 
 namespace Uaic.Tap2020Demo.DataAccess.Repositories
 {
