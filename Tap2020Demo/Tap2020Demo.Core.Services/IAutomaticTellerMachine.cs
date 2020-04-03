@@ -1,7 +1,7 @@
 ﻿using Uaic.Tap2020Demo.Core.Accounts.Base;
 using Uaic.Tap2020Demo.WithdrawalFeeCalculators;
 
-namespace Uaic.Tap2020Demo.Core
+namespace Uaic.Tap2020Demo.Core.Services
 {
     public interface IAutomaticTellerMachine
     {

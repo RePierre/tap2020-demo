@@ -5,7 +5,13 @@ VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tap2020Demo", "Tap2020Demo\Tap2020Demo.csproj", "{9F1E30A2-97C9-4F77-9E33-3173075538A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tap2020Demo.Core", "Tap2020Demo.Core\Tap2020Demo.Core.csproj", "{CDEBB9A7-426A-4B9B-9E68-7BBA89AA7E26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tap2020Demo.Core", "Tap2020Demo.Core\Tap2020Demo.Core.csproj", "{CDEBB9A7-426A-4B9B-9E68-7BBA89AA7E26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tap2020Demo.DataAccess", "Tap2020Demo.DataAccess\Tap2020Demo.DataAccess.csproj", "{9F1FDE45-116A-4E68-8226-8544FEA50FCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tap2020Demo.DataAccess.SqlServer", "Tap2020Demo.DataAccess.SqlServer\Tap2020Demo.DataAccess.SqlServer.csproj", "{252F9637-85B2-49F2-BD80-7AAC7EF80C9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tap2020Demo.Core.Services", "Tap2020Demo.Core.Services\Tap2020Demo.Core.Services.csproj", "{D53A5502-1D1F-4156-816F-219FE4182063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{CDEBB9A7-426A-4B9B-9E68-7BBA89AA7E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDEBB9A7-426A-4B9B-9E68-7BBA89AA7E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDEBB9A7-426A-4B9B-9E68-7BBA89AA7E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F1FDE45-116A-4E68-8226-8544FEA50FCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F1FDE45-116A-4E68-8226-8544FEA50FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F1FDE45-116A-4E68-8226-8544FEA50FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F1FDE45-116A-4E68-8226-8544FEA50FCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252F9637-85B2-49F2-BD80-7AAC7EF80C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252F9637-85B2-49F2-BD80-7AAC7EF80C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252F9637-85B2-49F2-BD80-7AAC7EF80C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252F9637-85B2-49F2-BD80-7AAC7EF80C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D53A5502-1D1F-4156-816F-219FE4182063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D53A5502-1D1F-4156-816F-219FE4182063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D53A5502-1D1F-4156-816F-219FE4182063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D53A5502-1D1F-4156-816F-219FE4182063}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

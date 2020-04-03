@@ -1,8 +1,9 @@
-﻿using Uaic.Tap2020Demo;
+﻿using System.Linq;
 using Uaic.Tap2020Demo.Core;
 using Uaic.Tap2020Demo.Core.Accounts;
-using Uaic.Tap2020Demo.Core.Accounts.Base;
-using Uaic.Tap2020Demo.WithdrawalFeeCalculators;
+using Uaic.Tap2020Demo.DataAccess.Repositories;
+using Uaic.Tap2020Demo.DataAccess.SqlServer;
+using Uaic.Tap2020Demo.DataAccess.SqlServer.Repositories;
 
 namespace Tap2020Demo
 {
@@ -10,46 +11,34 @@ namespace Tap2020Demo
     {
         static void Main(string[] args)
         {
-            IAutomaticTellerMachine atm = new AutomaticTellerMachine();
-            var debitCalculator = new DebitAccountWithdrawalFeeCalculator();
-            IWithdrawalAndDepositAccount debitAccount = new DebitAccount();
-
-            atm.DepositMoneyTo(debitAccount, 100);
-            atm.WithdrawMoneyFrom(debitAccount, 50, debitCalculator);
-
-            var creditCalculator = new CreditAccountWithdrawalFeeCalculator();
-            WithdrawalAndDepositAccount creditAccount = new CreditAccount();
-            atm.DepositMoneyTo(creditAccount, 100);
-            atm.WithdrawMoneyFrom(creditAccount, 150, new DummyCalculator());
-
-            TestWithdrawalFromDebitAccount();
-        }
-
-        static void TestWithdrawalFromDebitAccount()
-        {
-            // Arrange
-            var atm = new AutomaticTellerMachine();
-            var account = new DebitAccount();
-            var prevAmount = account.Amount;
-
-            // Act
-            atm.DepositMoneyTo(account, 50);
-            atm.WithdrawMoneyFrom(account, 50, new DummyCalculator());
-
-            // Assert
-            if (account.Amount == prevAmount)
+            using (var dataContext = new Tap2020DemoContext())
             {
-                System.Console.WriteLine("Test passed.");
+                IDataRepository repository = new DataRepository(dataContext);
+                var accountHolder = new AccountHolder
+                {
+                    FullName = "Ileana Scândură"
+                };
+
+                var account = new DebitAccount
+                {
+                    AccountHolder = accountHolder,
+                    Iban = "RO29RZBR2617696727494934"
+                };
+
+                accountHolder.DebitAccounts.Add(account);
+                repository.Insert(accountHolder);
+
+                account.Deposit(100);
+                repository.SaveChanges();
+
+                accountHolder = repository.Query<AccountHolder>()
+                    .Single(ah => ah.Id == accountHolder.Id);
+                System.Console.WriteLine("Debit accounts of {0}:", accountHolder.FullName);
+                foreach (var debitAccount in accountHolder.DebitAccounts)
+                {
+                    System.Console.WriteLine("IBAN: {0}, Amount: {1}", debitAccount.Iban, debitAccount.Amount);
+                }
             }
         }
-
-        class DummyCalculator : IWithdrawalFeeCalculator
-        {
-            public decimal CalculateAmountToWithdraw(decimal amount)
-            {
-                return 50m;
-            }
-        }
-
     }
 }

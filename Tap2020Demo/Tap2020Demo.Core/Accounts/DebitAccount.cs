@@ -4,5 +4,6 @@ namespace Uaic.Tap2020Demo.Core.Accounts
 {
     public class DebitAccount : WithdrawalAndDepositAccount
     {
+        public AccountHolder AccountHolder { get; set; }
     }
 }
