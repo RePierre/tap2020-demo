@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿using Autofac;
+using Autofac.Core;
+using System.Linq;
+using Tap2020Demo.Examples;
+using Tap2020Demo.IoC;
 using Uaic.Tap2020Demo.Core;
 using Uaic.Tap2020Demo.Core.Accounts;
 using Uaic.Tap2020Demo.DataAccess;
@@ -12,34 +16,10 @@ namespace Tap2020Demo
     {
         static void Main(string[] args)
         {
-            using (var dataContext = new Tap2020DemoContext())
+            using (var container = AutofacBootstrapper.Bootstrap())
             {
-                IUnitOfWork unitOfWork = new UnitOfWork(dataContext);
-                IDataRepository repository = new DataRepository(dataContext);
-                var accountHolder = new AccountHolder
-                {
-                    FullName = "Ileana Scândură"
-                };
-
-                var account = new DebitAccount
-                {
-                    AccountHolder = accountHolder,
-                    Iban = "RO29RZBR2617696727494934"
-                };
-
-                accountHolder.DebitAccounts.Add(account);
-                repository.Insert(accountHolder);
-
-                account.Deposit(100);
-                unitOfWork.Commit();
-
-                accountHolder = repository.Query<AccountHolder>()
-                    .Single(ah => ah.Id == accountHolder.Id);
-                System.Console.WriteLine("Debit accounts of {0}:", accountHolder.FullName);
-                foreach (var debitAccount in accountHolder.DebitAccounts)
-                {
-                    System.Console.WriteLine("IBAN: {0}, Amount: {1}", debitAccount.Iban, debitAccount.Amount);
-                }
+                var example = container.Resolve<DependencyInjectionExample>();
+                example.Show();
             }
         }
     }
