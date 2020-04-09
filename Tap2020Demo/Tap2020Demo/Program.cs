@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Uaic.Tap2020Demo.Core;
 using Uaic.Tap2020Demo.Core.Accounts;
+using Uaic.Tap2020Demo.DataAccess;
 using Uaic.Tap2020Demo.DataAccess.Repositories;
 using Uaic.Tap2020Demo.DataAccess.SqlServer;
 using Uaic.Tap2020Demo.DataAccess.SqlServer.Repositories;
@@ -13,6 +14,7 @@ namespace Tap2020Demo
         {
             using (var dataContext = new Tap2020DemoContext())
             {
+                IUnitOfWork unitOfWork = new UnitOfWork(dataContext);
                 IDataRepository repository = new DataRepository(dataContext);
                 var accountHolder = new AccountHolder
                 {
@@ -29,7 +31,7 @@ namespace Tap2020Demo
                 repository.Insert(accountHolder);
 
                 account.Deposit(100);
-                repository.SaveChanges();
+                unitOfWork.Commit();
 
                 accountHolder = repository.Query<AccountHolder>()
                     .Single(ah => ah.Id == accountHolder.Id);
