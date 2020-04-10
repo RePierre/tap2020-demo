@@ -15,10 +15,6 @@ namespace Uaic.Tap2020Demo.DataAccess.SqlServer
         {
         }
 
-        public Tap2020DemoContext([NotNullAttribute] DbContextOptions options) : base(options)
-        {
-        }
-
         public DbSet<DebitAccount> DebitAccounts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

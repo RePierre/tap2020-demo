@@ -18,11 +18,6 @@ namespace Uaic.Tap2020Demo.DataAccess.SqlServer.Repositories
             return dataContext.Set<TEntity>();
         }
 
-        public void SaveChanges()
-        {
-            dataContext.SaveChanges();
-        }
-
         void IDataRepository.Delete<TEntity>(TEntity entity)
         {
             var dbEntity = dataContext.Set<TEntity>()

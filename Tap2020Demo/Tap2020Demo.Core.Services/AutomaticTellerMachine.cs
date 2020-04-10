@@ -23,5 +23,16 @@ namespace Uaic.Tap2020Demo.Core.Services
             account.Withdraw(totalAmount);
             Console.WriteLine("{0}: {1}", account.GetType().Name, account.Amount);
         }
+
+        public void Transfer(IWithdrawalAndDepositAccount from, IDepositAccount to, decimal amount)
+        {
+            if (from.Amount < amount)
+            {
+                throw new InvalidOperationException();
+            }
+
+            from.Withdraw(amount);
+            to.Deposit(amount);
+        }
     }
 }

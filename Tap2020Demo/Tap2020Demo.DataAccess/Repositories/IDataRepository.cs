@@ -12,7 +12,5 @@ namespace Uaic.Tap2020Demo.DataAccess.Repositories
         void Update<TEntity>(TEntity entity) where TEntity : class, IEntityBase;
 
         void Delete<TEntity>(TEntity entityId) where TEntity : class, IEntityBase;
-
-        void SaveChanges();
     }
 }

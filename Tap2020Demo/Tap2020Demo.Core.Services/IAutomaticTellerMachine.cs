@@ -8,5 +8,7 @@ namespace Uaic.Tap2020Demo.Core.Services
         void DepositMoneyTo(IDepositAccount depositAccount, decimal amount);
 
         void WithdrawMoneyFrom(IWithdrawalAndDepositAccount account, decimal amount, IWithdrawalFeeCalculator withdrawalFeeCalculator);
+
+        void Transfer(IWithdrawalAndDepositAccount from, IDepositAccount to, decimal amount);
     }
 }
