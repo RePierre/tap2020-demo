@@ -36,7 +36,7 @@ namespace Tap2020Demo.Core.Services.Tests
             public void TransferShouldThrow()
             {
                 // Arrange
-                bool exceptionThrown = true;
+                bool exceptionThrown = false;
 
                 // Act
                 try
