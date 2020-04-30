@@ -20,7 +20,7 @@ namespace Uaic.Tap2020Demo.DataAccess.SqlServer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(@"Data Source=localhost;Initial Catalog=Tap2020;Integrated Security=True;MultipleActiveResultSets=True");
+            optionsBuilder.UseSqlServer(@"Data Source=localhost;Initial Catalog=Tap2020Demo;Integrated Security=True;MultipleActiveResultSets=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
