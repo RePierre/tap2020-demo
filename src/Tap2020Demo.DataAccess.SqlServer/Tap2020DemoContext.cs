@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +21,8 @@ namespace Uaic.Tap2020Demo.DataAccess.SqlServer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(@"Data Source=localhost;Initial Catalog=Tap2020Demo;Integrated Security=True;MultipleActiveResultSets=True");
+            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Tap2020"].ConnectionString;
+            optionsBuilder.UseSqlServer(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
