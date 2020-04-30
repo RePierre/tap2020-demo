@@ -1,4 +1,6 @@
-﻿namespace Uaic.Tap2020Demo.Core.Accounts.Base
+﻿using System;
+
+namespace Uaic.Tap2020Demo.Core.Accounts.Base
 {
     public interface IDepositAccount : IEntityBase
     {

@@ -11,7 +11,8 @@ namespace Uaic.Tap2020Demo.Core
         {
             DebitAccounts = new List<DebitAccount>();
         }
-        public int Id { get; set; }
+
+        public Guid Id { get; set; }
 
         public string FullName { get; set; }
 

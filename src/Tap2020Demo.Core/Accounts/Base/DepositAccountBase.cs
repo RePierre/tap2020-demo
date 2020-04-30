@@ -1,8 +1,10 @@
-﻿namespace Uaic.Tap2020Demo.Core.Accounts.Base
+﻿using System;
+
+namespace Uaic.Tap2020Demo.Core.Accounts.Base
 {
     public abstract class DepositAccountBase : IDepositAccount
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Iban { get; set; }
 
