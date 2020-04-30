@@ -22,14 +22,17 @@ namespace Tap2020Demo.Examples
 
         public void Show()
         {
-            var accountHolder = new AccountHolder
+            var accountHolder = new Customer
             {
-                FullName = "Ileana Scândură"
+                FirstName = "Ileana",
+                LastName="Scândură",
+                IdNo = "091203923019",
+                Id = Guid.NewGuid()
             };
 
             var account = new DebitAccount
             {
-                AccountHolder = accountHolder,
+                Customer = accountHolder,
                 Iban = "RO29RZBR2617696727494934"
             };
 
@@ -38,9 +41,6 @@ namespace Tap2020Demo.Examples
 
             account.Deposit(100);
             unitOfWork.Commit();
-
-            accountHolder = dataRepository.Query<AccountHolder>()
-                .Single(ah => ah.Id == accountHolder.Id);
 
             System.Console.WriteLine("Debit accounts of {0}:", accountHolder.FullName);
             foreach (var debitAccount in accountHolder.DebitAccounts)

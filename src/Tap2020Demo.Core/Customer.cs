@@ -5,13 +5,20 @@ using Uaic.Tap2020Demo.Core.Accounts;
 
 namespace Uaic.Tap2020Demo.Core
 {
-    public class AccountHolder : IEntityBase
+    public class Customer : IEntityBase
     {
-        public AccountHolder()
+        public Customer()
         {
             DebitAccounts = new List<DebitAccount>();
         }
-        public int Id { get; set; }
+
+        public Guid Id { get; set; }
+
+        public string IdNo { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
 
         public string FullName { get; set; }
 

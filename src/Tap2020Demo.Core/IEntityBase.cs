@@ -6,6 +6,6 @@ namespace Uaic.Tap2020Demo.Core
 {
     public interface IEntityBase
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 }
