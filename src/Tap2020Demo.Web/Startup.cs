@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Uaic.Tap2020Demo.DataAccess;
+using Uaic.Tap2020Demo.DataAccess.Repositories;
+using Uaic.Tap2020Demo.DataAccess.SqlServer;
+using Uaic.Tap2020Demo.DataAccess.SqlServer.Repositories;
 
 namespace Tap2020Demo.Web
 {
@@ -24,6 +28,14 @@ namespace Tap2020Demo.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<Tap2020DemoContext>(_ =>
+            {
+                var config = _.GetService<IConfiguration>();
+                var connString = config.GetConnectionString("Tap2020");
+                return new Tap2020DemoContext(connString);
+            });
+            services.AddTransient<IDataRepository, DataRepository>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

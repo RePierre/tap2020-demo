@@ -4,4 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tap2020Demo.Core.Services\Tap2020Demo.Core.Services.csproj" />
+    <ProjectReference Include="..\Tap2020Demo.Core\Tap2020Demo.Core.csproj" />
+    <ProjectReference Include="..\Tap2020Demo.DataAccess.SqlServer\Tap2020Demo.DataAccess.SqlServer.csproj" />
+    <ProjectReference Include="..\Tap2020Demo.DataAccess\Tap2020Demo.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
