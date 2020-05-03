@@ -60,10 +60,19 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\PostDeployment" />
+    <Folder Include="Scripts\PostDeployment\SeedData" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Accounts.sql" />
     <Build Include="dbo\Tables\AccountTypes.sql" />
     <Build Include="dbo\Tables\Customers.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\PostDeployment\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\PostDeployment\SeedData\AccountTypes.sql" />
   </ItemGroup>
 </Project>
