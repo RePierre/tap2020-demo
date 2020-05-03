@@ -4,7 +4,7 @@ namespace Uaic.Tap2020Demo.Core.Accounts.Base
 {
     public interface IDepositAccount : IEntityBase
     {
-        public Guid CustomerId { get; set; }
+        public Guid AccountHolderId { get; set; }
 
         decimal Amount { get; }
 
