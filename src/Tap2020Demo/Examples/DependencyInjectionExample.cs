@@ -25,27 +25,35 @@ namespace Tap2020Demo.Examples
             var accountHolder = new Customer
             {
                 FirstName = "Ileana",
-                LastName="Scândură",
-                IdNo = "091203923019",
+                LastName = "Scândură",
+                IdNo = "091203923018",
                 Id = Guid.NewGuid()
             };
 
-            var account = new DebitAccount
+            var debitAccount = new DebitAccount
             {
-                Customer = accountHolder,
-                Iban = "RO29RZBR2617696727494934"
+                AccountHolderId = accountHolder.Id,
+                Iban = "RO29RZBR2617696727494944"
             };
 
-            accountHolder.DebitAccounts.Add(account);
+            var savingsAccount = new SavingsAccount
+            {
+                AccountHolderId = accountHolder.Id,
+                Iban = "RO29RZBR2617696727494946"
+            };
+
+            accountHolder.DebitAccounts.Add(debitAccount);
+            accountHolder.SavingsAccounts.Add(savingsAccount);
+
             dataRepository.Insert(accountHolder);
 
-            account.Deposit(100);
+            debitAccount.Deposit(100);
             unitOfWork.Commit();
 
             System.Console.WriteLine("Debit accounts of {0}:", accountHolder.FullName);
-            foreach (var debitAccount in accountHolder.DebitAccounts)
+            foreach (var da in accountHolder.DebitAccounts)
             {
-                System.Console.WriteLine("IBAN: {0}, Amount: {1}", debitAccount.Iban, debitAccount.Amount);
+                System.Console.WriteLine("IBAN: {0}, Amount: {1}", da.Iban, da.Amount);
             }
         }
     }
