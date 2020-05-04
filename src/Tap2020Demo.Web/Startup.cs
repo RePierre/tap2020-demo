@@ -60,6 +60,7 @@ namespace Tap2020Demo.Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(null, "BackOffice/Customers", new { area = "BackOffice", controller = "Customers", action = "Index" });
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

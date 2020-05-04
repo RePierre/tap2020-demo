@@ -1,0 +1,43 @@
+﻿@model Tap2020Demo.Web.Areas.BackOffice.Models.SearchCustomersViewModel
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <form asp-controller="Customers" asp-action="Index" asp-area="BackOffice" method="get">
+                <div class="form-row">
+                    <div class="col-10">
+                        <input type="search" class="input-search-box" name="SearchTerm" value="@Model.SearchTerm" />
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" value="Search" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-3">
+            @Html.ActionLink("New Customer", "Create", "Customers", new { area = "BackOffice" })
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">IdNo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Results)
+                {
+                    <tr>
+                        <td>
+                            <span>@item.FullName</span>
+                        </td>
+                        <td>
+                            <span>@item.IdNo</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
