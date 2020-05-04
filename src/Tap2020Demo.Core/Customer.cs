@@ -10,6 +10,7 @@ namespace Uaic.Tap2020Demo.Core
         public Customer()
         {
             DebitAccounts = new List<DebitAccount>();
+            SavingsAccounts = new List<SavingsAccount>();
         }
 
         public Guid Id { get; set; }
@@ -23,5 +24,7 @@ namespace Uaic.Tap2020Demo.Core
         public string FullName { get; set; }
 
         public virtual IList<DebitAccount> DebitAccounts { get; set; }
+
+        public virtual IList<SavingsAccount> SavingsAccounts { get; set; }
     }
 }

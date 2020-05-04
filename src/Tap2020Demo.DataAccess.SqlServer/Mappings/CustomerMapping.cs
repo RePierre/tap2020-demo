@@ -11,10 +11,10 @@ namespace Uaic.Tap2020Demo.DataAccess.SqlServer.Mappings
             builder.ToTable("Customers")
                 .HasKey(_ => _.Id);
 
-            builder.Property(_ => _.FullName).HasColumnName("FullName");
+            builder.Property(_ => _.FullName).HasColumnName("FullName").ValueGeneratedOnAddOrUpdate();
 
             builder.HasMany(_ => _.DebitAccounts)
-                .WithOne(_ => _.Customer);
+                .WithOne(_ => _.AccountHolder);
         }
     }
 }

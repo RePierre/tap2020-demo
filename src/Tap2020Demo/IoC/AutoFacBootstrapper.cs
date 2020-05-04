@@ -15,7 +15,7 @@ namespace Tap2020Demo.IoC
         public static IContainer Bootstrap()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<Tap2020DemoContext>();
+            builder.RegisterType<Tap2020DemoContext>().SingleInstance();
 
             builder.RegisterType<UnitOfWork>()
                 .As<IUnitOfWork>();
