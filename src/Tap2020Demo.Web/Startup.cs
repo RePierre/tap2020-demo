@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Uaic.Tap2020Demo.Core.Identity;
+using Uaic.Tap2020Demo.Core.Services;
+using Uaic.Tap2020Demo.Core.Services.Identity;
 using Uaic.Tap2020Demo.DataAccess;
 using Uaic.Tap2020Demo.DataAccess.Repositories;
 using Uaic.Tap2020Demo.DataAccess.SqlServer;
@@ -40,9 +44,24 @@ namespace Tap2020Demo.Web
             });
             services.AddTransient<IDataRepository, DataRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ICustomersService, CustomersService>();
 
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+            services.AddIdentity<User, Role>()
+                .AddSignInManager()
+                .AddDefaultTokenProviders();
+            services.AddAuthentication()
+                .AddCookie(opt =>
+                {
+                    opt.LoginPath = "Account/Login";
+                    opt.LogoutPath = "Account/Logout";
+                    opt.AccessDeniedPath = "Account/Denied";
+                });
+            services.AddTransient<IUserStore<User>, UserStore>();
+            services.AddTransient<IUserPasswordStore<User>, UserStore>();
+            services.AddTransient<IRoleStore<Role>, RoleStore>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,10 +96,12 @@ namespace Tap2020Demo.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(null, "Account/Login", new { area = "Account", controller = "Authentication", action = "Login" });
                 endpoints.MapControllerRoute(null, "BackOffice/Customers", new { area = "BackOffice", controller = "Customers", action = "Index" });
                 endpoints.MapControllerRoute(
                     name: "default",
