@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Roles]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL CONSTRAINT PK_Roles PRIMARY KEY, 
+    [Name] VARCHAR(50) NOT NULL
+)
+
+GO
+
+CREATE UNIQUE INDEX [IX_Roles_Name] ON [dbo].[Roles] ([Name])
