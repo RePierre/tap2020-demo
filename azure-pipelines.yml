@@ -13,5 +13,5 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build --help
+- script: dotnet build --configuration $(buildConfiguration) ./src/Tap2020Demo.sln
   displayName: 'dotnet build $(buildConfiguration)'
