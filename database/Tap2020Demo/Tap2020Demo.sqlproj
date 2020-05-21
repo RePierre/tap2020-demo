@@ -68,11 +68,17 @@
     <Build Include="dbo\Tables\Accounts.sql" />
     <Build Include="dbo\Tables\AccountTypes.sql" />
     <Build Include="dbo\Tables\Customers.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\Roles.sql" />
+    <Build Include="dbo\Tables\UserRoles.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\PostDeployment\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\PostDeployment\SeedData\AccountTypes.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Tap2020Demo.refactorlog" />
   </ItemGroup>
 </Project>
